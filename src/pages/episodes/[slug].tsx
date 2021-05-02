@@ -1,11 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from "next"
 import { api } from '../../services/axios';
 import { convertDurationTimeString } from "../../utils/convertDurationTimeString";
-import  Link  from 'next/link';
 import { format, parseISO } from 'date-fns';
+import { usePlayer } from "../context/PlayerContext";
+import  Link  from 'next/link';
 import ptBR from 'date-fns/locale/pt-BR';
 import styles from './slug.module.scss';
 import Image from 'next/image';
+import Head from 'next/head';
 
 type Episode = {
   id: string,
@@ -22,8 +24,12 @@ type slugProps = {
   episode: Episode;
 }
 export default function Episodes({ episode }: slugProps){
+  const { play } = usePlayer()
   return(
     <div className={ styles.episodeContainer }>
+       <Head>
+        <title>{ episode.title } | podcastr</title>
+      </Head>
       <header className={ styles.banner }>
           <Link href="/">
             <button><img src="/arrow-left.svg" alt="Botão voltar"/></button>
@@ -31,7 +37,7 @@ export default function Episodes({ episode }: slugProps){
 
           <Image width={700} height={150} src={ episode.thumbnail} objectFit="cover" />
 
-          <button><img src="/play-white.svg" alt="Tocar podcast"/></button>
+          <button onClick={ () => play(episode)}><img src="/play-white.svg" alt="Tocar podcast"/></button>
       </header>
       <main className={styles.mainContainer}>
           <h1>{ episode.title }</h1>

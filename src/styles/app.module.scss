@@ -1,7 +1,10 @@
-.appContainer{
-  display: flex;
 
-  main{
-    flex: 1;
+@media screen and (min-width: 1081px){
+  .appContainer{
+    display: flex;
+  
+    main{
+      flex: 1;
+    }
   }
 }

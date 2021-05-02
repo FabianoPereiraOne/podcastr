@@ -1,33 +1,23 @@
-import '../styles/globals.scss';
-
 import { Header } from '../Components/Header';
 import { Player } from '../Components/Player';
 
 import styles from '../styles/app.module.scss';
-import { PlayerContext } from './context/PlayerContext';
-import { useState } from 'react';
+import '../styles/globals.scss';
+import { PlayerContextProvider } from './context/PlayerContext';
 
 function MyApp({ Component, pageProps }) {
-  const [ episodeList, setEpisodeList ]  = useState([])
-  const [ currentEpisodeIndex, setCurrentEpisodeIndex ] = useState(0) 
-
-  function play(episode){
-    setEpisodeList([episode])
-    setCurrentEpisodeIndex(0)
-  }
-
   return (
-      <PlayerContext.Provider value={ { episodeList, currentEpisodeIndex , play} }>
-    <div className={ styles.appContainer }>
-      
-      <main>
-        <Header/>
-        <Component {...pageProps} />
-      </main>
-      <Player/>
+      <PlayerContextProvider>
+        <div className={ styles.appContainer }>
+          
+          <main>
+            <Header/>
+            <Component {...pageProps} />
+          </main>
+          <Player/>
 
-    </div>
-    </PlayerContext.Provider>
+        </div>
+    </PlayerContextProvider>
   )
 }
 

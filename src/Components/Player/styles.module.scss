@@ -1,3 +1,9 @@
+.playerContainerOff{
+  display: none;
+  font-size: 0;
+  transition: 1s ease;
+}
+
 .playerContainer{
   width: 26.5rem;
   height: 100vh;
@@ -26,9 +32,34 @@
   footer{
     align-self: stretch;
 
-    &.empty{
+    &.empty .progress{
       opacity: 0.5;
     }
+  }
+}
+
+.enablePlayer {
+  text-align: center;
+
+  img {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 1.5rem;
+    max-width: 100%;
+  }
+
+  strong{
+    font-family: Lexend, sans-serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    display: block;
+  }
+
+  span{
+    display: block;
+    margin-top: 2rem;
+    opacity: 0.7;
   }
 }
 
@@ -84,13 +115,69 @@
     background: transparent;
     border: 0;
     font-size: 0;
+    transition: filter 0.2s;
+   
+    &:hover:not(:disabled){
+      filter: brightness(0.7);
+    }
+
+    &.isActive{
+      filter: brightness(0.2) invert(0.35) sepia(1) saturate(3)  hue-rotate(100deg);
+    }
+
+    &.isActive:hover{
+      filter: brightness(0.6);
+    }
 
       &.playButton {
         width: 4rem;
         height: 4rem;
         border-radius: 1rem;
         background-color: var(--purple-400);
+
+        &:hover:not(:disabled){
+          filter: brightness(0.95);
+        }
+      }
+
+      &:disabled{
+        cursor: default;
+        opacity: 0.6;
       }
   }
 
+}
+
+@media (min-width: 769px) and (max-width: 1080px){
+  .playerContainer{
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
+}
+
+@media (min-width: 569px) and (max-width: 768px){
+  .playerContainer{
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
+}
+
+@media screen and (max-width: 568px){
+  .playerContainer{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .buttons{
+    button{
+      &.playButton{
+        width: 5rem;
+      }
+    }
+  }
 }
