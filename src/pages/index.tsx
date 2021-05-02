@@ -74,7 +74,7 @@ export default function Home({ lastEpisodes, allEpisodes}: HomeProps) {
                 <tr>
                   <th></th>
                   <th>Podcast</th>
-                  <th>Integrantes</th>
+                  <th className={ styles.members }>Integrantes</th>
                   <th>Data</th>
                   <th>Duração</th>
                   <th></th>
@@ -96,7 +96,7 @@ export default function Home({ lastEpisodes, allEpisodes}: HomeProps) {
                               <a>{ episode.title }</a>
                           </Link>
                         </td>
-                        <td>{ episode.members}</td>
+                        <td className={ styles.members }>{ episode.members}</td>
                         <td style={{width: 100}}>{ episode.publishedAt }</td>
                         <td>{ episode.durationAsString }</td>
                         <td><button type="button" onClick={ ()=> playList(episodeList, (index+ lastEpisodes.length))}><img src="/play-green.svg" alt="Tocar episodio"/></button></td>

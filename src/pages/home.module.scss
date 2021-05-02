@@ -212,6 +212,36 @@
   }
 }
 
+@media screen and (max-width: 568px){
+  .allEpisodes{
+    table{
+      thead{
+        tr{
+          th:first-child{
+            display: none;
+          }
+
+          th.members{
+            display: none;
+          }
+        }
+      }
+
+      tbody{
+        tr{
+          td:first-child{
+            display: none;
+          }
+
+          td.members{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 368px){
   .lastEpisodes{
     ul{
@@ -242,5 +272,25 @@
     visibility: hidden;
     width: 0;
     height: 0;
+  }
+
+  .allEpisodes{
+    table{
+      thead{
+        tr{
+          th:nth-child(1), th:nth-child(3), th:nth-child(4), th:nth-child(5) {
+            display: none;
+          }
+        }
+      }
+
+      tbody{
+        tr{
+          td:nth-child(1), td:nth-child(3), td:nth-child(4), td:nth-child(5) {
+            display: none;
+          }
+        }
+      }
+    }
   }
 }
