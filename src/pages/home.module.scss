@@ -192,3 +192,21 @@
     }
   }
 }
+
+@media screen and (max-width: 768px){
+  .lastEpisodes{
+    ul{
+      grid-template-columns: auto;
+
+      li{
+        padding: 1rem;
+
+        .thumb{
+          visibility: hidden;
+          width: 0;
+          height: 0;
+        }
+      }
+    }
+  }
+}

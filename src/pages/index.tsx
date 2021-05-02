@@ -45,6 +45,7 @@ export default function Home({ lastEpisodes, allEpisodes}: HomeProps) {
                   <Image  width={192}
                    height={192}
                   objectFit='cover'
+                  className={ styles.thumb }
                   src={episode.thumbnail}
                   alt={ episode.title }/>
 

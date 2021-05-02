@@ -9,6 +9,8 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 export function Player(){
   const [progress, setProgress] = useState(0)
+  const [controlClass, setControlClass] = useState(false)
+
   const {
     episodeList,
     isSidebar,
@@ -24,6 +26,7 @@ export function Player(){
     playPrevious,
     toggleLoop,
     toggleShuffle,
+    toggleSidebar,
     clearEpisodes
   } = usePlayer()
   const episode = episodeList[currentEpisodeIndex]
@@ -51,6 +54,7 @@ export function Player(){
     }
   }
 
+
   useEffect(()=>{
     if(!audioRef.current){
       return;
@@ -62,8 +66,28 @@ export function Player(){
       audioRef.current.pause()
     }
   }, [isPlaying])
+
+  useEffect(()=>{
+    const navigatorWidth = window.innerWidth
+    
+    if(navigatorWidth > 1080){
+      setControlClass(true)
+    }else{
+      setControlClass(false)
+    }
+  },[])
+
   return(
-    <div className={ isSidebar ? styles.playerContainer  : styles.playerContainerOff }>
+    <div className={ 
+      controlClass ? styles.playerContainer : 
+      isSidebar ? styles.playerContainer : styles.playerContainerOff
+     }>
+       <button type="button" 
+       className={ styles.btnClose }
+       onClick={ toggleSidebar }
+       >
+         <AiOutlineCloseCircle/>
+       </button>
       <header>
         <img src="/playing.svg" alt="Tocando agora"/>
         <strong>Tocando agora</strong>

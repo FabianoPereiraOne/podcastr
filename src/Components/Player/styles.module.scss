@@ -15,6 +15,7 @@
   justify-content: space-between;
   background-color: var(--purple-500);
   color: var(--white);
+  position: relative;
 
   header{
     width: 100%;
@@ -36,6 +37,11 @@
       opacity: 0.5;
     }
   }
+}
+
+.btnClose{
+  font-size: 0;
+  visibility: hidden;
 }
 
 .enablePlayer {
@@ -148,19 +154,35 @@
 
 }
 
-@media (min-width: 769px) and (max-width: 1080px){
+@media screen and (max-width: 1080px){
   .playerContainer{
     position: fixed;
     right: 0;
     top: 0;
   }
-}
 
-@media (min-width: 569px) and (max-width: 768px){
-  .playerContainer{
-    position: fixed;
-    right: 0;
-    top: 0;
+  .btnClose{
+    visibility: visible;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    font-size: 2rem;
+    background: transparent;
+
+    svg{
+      color: var(--purple-300);
+      transition: color 0.5s;
+    }
+
+    &:hover{
+
+      svg{
+        color: var(--white);
+      }
+    }
   }
 }
 
