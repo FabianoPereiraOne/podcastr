@@ -1,5 +1,5 @@
 .episodeContainer{
-  width: 45rem;
+  width: 60%;
   margin:  0 auto;
   padding: 1rem;
 
@@ -78,6 +78,57 @@
     
     p{
       margin-top: 0.5rem;
+    }
+  }
+}
+
+@media (min-width: 368px) and (max-width: 768px){
+  .episodeContainer{
+    width: 90%;
+
+    .banner{
+      button{
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+  
+  .mainContainer{
+    h1{
+      font-size: 1.5rem;
+    }
+
+    span:nth-child(2){
+      display: block;
+    }
+  }
+}
+
+@media screen and (max-width: 368px){
+  .episodeContainer{
+    width: 90%;
+
+    .banner{
+      button{
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.3rem;
+      }
+
+      img{
+        border-radius: 0.4rem;
+      }
+    }
+  }
+  
+  .mainContainer{
+    h1{
+      font-size: 1.3rem;
+    }
+
+    span:nth-child(2){
+      display: block;
     }
   }
 }

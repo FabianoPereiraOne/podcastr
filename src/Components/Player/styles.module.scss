@@ -16,6 +16,7 @@
   background-color: var(--purple-500);
   color: var(--white);
   position: relative;
+  z-index: 9999;
 
   header{
     width: 100%;
@@ -159,6 +160,7 @@
     position: fixed;
     right: 0;
     top: 0;
+    z-index: 9999;
   }
 
   .btnClose{
@@ -193,6 +195,7 @@
     top: 0;
     width: 100%;
     padding: 2rem;
+    z-index: 9999;
   }
 
   .buttons{
