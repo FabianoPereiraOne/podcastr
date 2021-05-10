@@ -244,12 +244,16 @@
 }
 
 @media screen and (max-width: 568px){
+  .Homepage{
+    overflow-x: hidden;
+  }
+  
   .lastEpisodes{
     ul{
       li{
         a{
-          font-size: 1rem;
-           max-width: 60%;
+          font-size: 0.9rem;
+           max-width: 50%;
            overflow: hidden;
            white-space: nowrap;
            text-overflow: ellipsis;
