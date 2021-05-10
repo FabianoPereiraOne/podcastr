@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 import format from 'date-fns/format';
 import ptBr from 'date-fns/locale/pt-BR';
 import { VscThreeBars } from 'react-icons/vsc';
-import { usePlayer } from '../../pages/context/PlayerContext';
+import { usePlayer } from '../context/PlayerContext';
 import Link from 'next/link';
 
 export function Header(){

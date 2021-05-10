@@ -3,7 +3,7 @@ import { Player } from '../Components/Player';
 
 import styles from '../styles/app.module.scss';
 import '../styles/globals.scss';
-import { PlayerContextProvider } from './context/PlayerContext';
+import { PlayerContextProvider } from '../Components/context/PlayerContext';
 
 function MyApp({ Component, pageProps }) {
   return (

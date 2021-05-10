@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 import { format, parseISO } from 'date-fns';
-import { api } from '../services/axios';
-import { usePlayer } from './context/PlayerContext';
+import firebase from '../services/firebaseConection';
+import { usePlayer } from '../Components/context/PlayerContext';
 import { convertDurationTimeString } from '../utils/convertDurationTimeString';
 import ptBR from 'date-fns/locale/pt-BR';
 import styles from './home.module.scss'
@@ -24,6 +24,7 @@ type HomeProps = {
   lastEpisodes: Array<Episodio>
   allEpisodes: Array<Episodio>
 }
+
 
 export default function Home({ lastEpisodes, allEpisodes}: HomeProps) {
   const { playList } = usePlayer()
@@ -112,36 +113,50 @@ export default function Home({ lastEpisodes, allEpisodes}: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    const { data }  = await api.get("episodes",{
-     params:{
-        _limit: 12,
-        _sort: "published_at",
-        _order: "desc"
-     }
-    })
+  let data = []
 
-    const episodios = data.map((episodio)=>{
-      return{
-        id: episodio.id,
-        title: episodio.title,
-        members: episodio.members,
-        publishedAt: format(parseISO(episodio.published_at), "d MMM yy", { locale: ptBR}),
-        thumbnail: episodio.thumbnail,
-        url: episodio.file.url,
-        duration: episodio.file.duration,
-        durationAsString: convertDurationTimeString(Number(episodio.file.duration))
-      }
-    })
+  await firebase.database().ref("episodes").get()
+  .then((date)=> {
+    let obj = Object.values(date.val())
+     obj.map((episode)=>{
+      data.push(episode)
+     })
+  })
 
-    const lastEpisodes = episodios.slice(0,2)
-    const allEpisodes = episodios.slice(2, episodios.length)
-
-    return{ 
-      props: {
-        lastEpisodes,
-        allEpisodes
-      },
-      revalidate: 60 * 60 * 8
+  data.sort((a,b)=>{
+    if(a.title > b.title){
+      return -1
+    }else{
+      return 1
     }
+  })
+
+
+  const episodios = data.map((episodio)=>{
+    return{
+      id: episodio.id,
+      title: episodio.title,
+      members: episodio.members,
+      publishedAt: format(parseISO(episodio.published_at), "d MMM yy", { locale: ptBR}),
+      thumbnail: episodio.thumbnail,
+      url: episodio.file.url,
+      duration: episodio.file.duration,
+      durationAsString: convertDurationTimeString(Number(episodio.file.duration))
+    }
+  })
+
+  const lastEpisodes = episodios.slice(0,2)
+  const allEpisodes = episodios.slice(2, episodios.length)
+
+  return{ 
+    props: {
+      lastEpisodes,
+      allEpisodes
+    },
+    revalidate: 60 * 60 * 8
+  }
+
+
 
 }
+

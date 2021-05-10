@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { usePlayer } from '../../pages/context/PlayerContext';
+import { usePlayer } from '../context/PlayerContext';
 import styles from './styles.module.scss';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
